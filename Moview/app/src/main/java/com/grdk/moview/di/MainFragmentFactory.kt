@@ -2,7 +2,7 @@ package com.grdk.moview.di
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
-import com.grdk.moview.ui.recentsearches.RecentSearchesFragment
+import com.grdk.moview.recentsearches.ui.RecentSearchesFragment
 import javax.inject.Inject
 import javax.inject.Provider
 

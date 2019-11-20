@@ -2,7 +2,7 @@ package com.grdk.moview.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.grdk.moview.ui.recentsearches.RecentSearchesViewModel
+import com.grdk.moview.recentsearches.ui.RecentSearchesViewModel
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton

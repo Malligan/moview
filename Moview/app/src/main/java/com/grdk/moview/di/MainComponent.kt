@@ -7,7 +7,8 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
-        MainFactoryModule::class
+        MainFactoryModule::class,
+        DatabaseModule::class
     ]
 )
 interface MainComponent {

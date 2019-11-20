@@ -3,7 +3,7 @@ package com.grdk.moview
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.grdk.moview.di.MainComponentHolder
-import com.grdk.moview.ui.recentsearches.RecentSearchesFragment
+import com.grdk.moview.recentsearches.ui.RecentSearchesFragment
 
 class MainActivity : AppCompatActivity() {
 
