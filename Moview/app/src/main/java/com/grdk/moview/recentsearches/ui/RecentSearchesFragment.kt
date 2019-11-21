@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.grdk.moview.MainNavigator
 import com.grdk.moview.R
 import kotlinx.android.synthetic.main.recent_searches_fragment.*
 import javax.inject.Inject
@@ -25,7 +26,7 @@ class RecentSearchesFragment @Inject constructor(viewModelFactory: ViewModelProv
 
     private val recentSearchesAdapter = RecentSearchesAdapter(
         recentSearchListener = {
-            // navigate to search with predefined name
+            (activity as MainNavigator).navigateToNewSearch(it.name)
         }
     )
 
@@ -53,13 +54,16 @@ class RecentSearchesFragment @Inject constructor(viewModelFactory: ViewModelProv
             adapter = recentSearchesAdapter
         }
 
+        fab.setOnClickListener {
+            (activity as MainNavigator).navigateToNewSearch()
+        }
+
         viewModel.viewState.observe(viewLifecycleOwner, recentSearchesObserver)
     }
 
     private fun showSuccessState(recentSearches: List<RecentSearchUiModel>) {
         recentSearchesAdapter.addItems(recentSearches)
     }
-
 }
 
 private fun RecyclerView.addDividerItemDecoration(@DrawableRes drawableResId: Int) {

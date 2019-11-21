@@ -7,7 +7,7 @@ import com.grdk.moview.di.MainComponent
 import com.grdk.moview.di.MainComponentHolder
 
 class MainApplication: Application(), MainComponentHolder {
-    lateinit var daggerComponent: MainComponent
+    private lateinit var daggerComponent: MainComponent
 
     override fun onCreate() {
         super.onCreate()

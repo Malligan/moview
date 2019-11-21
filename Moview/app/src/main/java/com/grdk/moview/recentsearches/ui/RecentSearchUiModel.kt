@@ -13,9 +13,7 @@ data class RecentSearchUiModel(
 var recentSearchDateFormat: DateFormat = SimpleDateFormat("dd/MM/yy", Locale.getDefault())
 
 fun List<RecentSearchModel>.toUiModels(): List<RecentSearchUiModel> {
-    return this.map {
-        it.toUiModel()
-    }
+    return this.map { it.toUiModel() }
 }
 
 fun RecentSearchModel.toUiModel(): RecentSearchUiModel {

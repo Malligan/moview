@@ -8,9 +8,14 @@ import javax.inject.Singleton
 @Component(
     modules = [
         MainFactoryModule::class,
-        DatabaseModule::class
+        DatabaseModule::class,
+        ServiceModule::class
     ]
 )
 interface MainComponent {
     fun fragmentFactory(): FragmentFactory
+}
+
+interface MainComponentHolder {
+    val mainComponent: MainComponent
 }

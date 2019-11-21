@@ -32,12 +32,13 @@ class RecentSearchesViewModel @Inject constructor(
     private fun loadRecentSearches() {
         disposable.add(recentSearchRepository.getAll()
             .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread()).subscribe{ searches ->
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe{ searches ->
                 if (searches.isEmpty()) {
-                    recentSearchRepository.insertInitialData().subscribe{ ids ->
+                    disposable.add(recentSearchRepository.insertInitialData().subscribe{ ids ->
                         Log.d("MWV", "items inserted: ${ids.size}")
                         _viewState.postValue(ViewState.Success(initialSearches.toUiModels()))
-                    }
+                    })
                 } else {
                     _viewState.postValue(ViewState.Success(searches.toUiModels()))
                 }
