@@ -1,5 +1,6 @@
 package com.grdk.moview.newsearch.data
 
+import com.grdk.moview.newsearch.domain.NewSearchResultModel
 import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.GET

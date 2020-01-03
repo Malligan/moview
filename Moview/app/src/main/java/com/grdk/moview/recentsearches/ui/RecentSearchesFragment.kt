@@ -25,8 +25,11 @@ class RecentSearchesFragment @Inject constructor(viewModelFactory: ViewModelProv
         RecentSearchesViewModel::class.java) }
 
     private val recentSearchesAdapter = RecentSearchesAdapter(
-        recentSearchListener = {
+        openSearchListener = {
             (activity as MainNavigator).navigateToNewSearch(it.name)
+        },
+        deleteRecentSearchListener = {
+            viewModel.removeRecentSearches(listOf(it.name))
         }
     )
 

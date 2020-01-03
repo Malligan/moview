@@ -3,10 +3,11 @@ package com.grdk.moview.recentsearches.ui
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 
 class RecentSearchesAdapter(
-    recentSearchListener: ((RecentSearchUiModel) -> Unit)?
+    openSearchListener: ((RecentSearchUiModel) -> Unit)?,
+    deleteRecentSearchListener: ((RecentSearchUiModel) -> Unit)?
 ) : ListDelegationAdapter<MutableList<RecentSearchUiModel>>() {
     init {
-        delegatesManager.addDelegate(RecentSearchesAdapterDelegate(recentSearchListener))
+        delegatesManager.addDelegate(RecentSearchesAdapterDelegate(openSearchListener, deleteRecentSearchListener))
         items = mutableListOf()
     }
 

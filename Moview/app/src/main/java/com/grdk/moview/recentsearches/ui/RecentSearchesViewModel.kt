@@ -17,6 +17,7 @@ class RecentSearchesViewModel @Inject constructor(
     private val recentSearchRepository: RecentSearchRepository
 ) : ViewModel() {
     private val disposable = CompositeDisposable()
+    private var recentlyLoadedSearches = mutableListOf<RecentSearchModel>()
     private val _viewState = MutableLiveData<ViewState>()
     val viewState: LiveData<ViewState>
         get() = _viewState
@@ -42,7 +43,15 @@ class RecentSearchesViewModel @Inject constructor(
                 } else {
                     _viewState.postValue(ViewState.Success(searches.toUiModels()))
                 }
+                recentlyLoadedSearches = searches.toMutableList()
             })
+    }
+
+    fun removeRecentSearches(recentSearchNamesToDelete: List<String>) {
+        val itemsToDelete = recentSearchNamesToDelete.map { nameToDelete -> recentlyLoadedSearches.find { it.name == nameToDelete } }
+        recentlyLoadedSearches.removeAll(itemsToDelete)
+        //recentSearchRepository.deleteAll(itemsToDelete) TODO
+        _viewState.postValue(ViewState.Success(recentlyLoadedSearches.toUiModels()))
     }
 
     sealed class ViewState {

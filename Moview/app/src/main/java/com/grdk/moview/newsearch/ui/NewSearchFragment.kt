@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.grdk.moview.MainNavigator
 import com.grdk.moview.R
-import com.grdk.moview.newsearch.data.NewSearchResultModel
+import com.grdk.moview.newsearch.domain.NewSearchResultModel
 import kotlinx.android.synthetic.main.new_search_fragment.*
 import javax.inject.Inject
 

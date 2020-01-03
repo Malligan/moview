@@ -6,11 +6,12 @@ import com.grdk.moview.R
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 
 class RecentSearchesAdapterDelegate(
-    private val recentSearchListener: ((RecentSearchUiModel) -> Unit)?
+    private val openSearchListener: ((RecentSearchUiModel) -> Unit)?,
+    private val deleteRecentSearchListener: ((RecentSearchUiModel) -> Unit)?
 ) : AbsListItemAdapterDelegate<RecentSearchUiModel, RecentSearchUiModel, RecentSearchItemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup): RecentSearchItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_recent_search, parent, false)
-        return RecentSearchItemViewHolder(view, recentSearchListener)
+        return RecentSearchItemViewHolder(view, openSearchListener, deleteRecentSearchListener)
     }
 
     override fun isForViewType(item: RecentSearchUiModel, items: MutableList<RecentSearchUiModel>, position: Int): Boolean {

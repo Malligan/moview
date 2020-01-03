@@ -8,15 +8,20 @@ import kotlinx.android.synthetic.main.item_recent_search.view.*
 
 class RecentSearchItemViewHolder(
     override val containerView: View,
-    private val depositActivityItemListener: ((RecentSearchUiModel) -> Unit)?
+    private val openSearchListener: ((RecentSearchUiModel) -> Unit)?,
+    private val deleteRecentSearchListener: ((RecentSearchUiModel) -> Unit)?
 ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
     private var item: RecentSearchUiModel? = null
 
     init {
-        containerView.recentSearchItemContainer.setOnClickListener {
+        containerView.search.setOnClickListener {
             item?.let { item ->
-                depositActivityItemListener?.invoke(item)
-                bindTo(item)
+                openSearchListener?.invoke(item)
+            }
+        }
+        containerView.delete.setOnClickListener {
+            item?.let { item ->
+                deleteRecentSearchListener?.invoke(item)
             }
         }
     }

@@ -4,9 +4,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.grdk.moview.newsearch.data.NewSearchResultModel
+import com.grdk.moview.newsearch.domain.NewSearchResultModel
 import com.grdk.moview.newsearch.data.NewSearchService
-import com.grdk.moview.recentsearches.data.RecentSearchModelImpl
+import com.grdk.moview.recentsearches.domain.RecentSearchModel
 import com.grdk.moview.recentsearches.data.RecentSearchRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -48,10 +48,12 @@ class NewSearchViewModel @Inject constructor(
             ))
 
         if (isNewSearch) {
-            val dataToInsert = listOf(RecentSearchModelImpl(
-                date = Calendar.getInstance().time.time,
-                name = title
-            ))
+            val dataToInsert = listOf(
+                RecentSearchModel(
+                    date = Calendar.getInstance().time.time,
+                    name = title
+                )
+            )
             disposable.add(recentSearchRepository.insertAll(dataToInsert)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
