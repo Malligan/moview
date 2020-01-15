@@ -49,9 +49,15 @@ class RecentSearchesViewModel @Inject constructor(
 
     fun removeRecentSearches(recentSearchNamesToDelete: List<String>) {
         val itemsToDelete = recentSearchNamesToDelete.map { nameToDelete -> recentlyLoadedSearches.find { it.name == nameToDelete } }
-        recentlyLoadedSearches.removeAll(itemsToDelete)
-        //recentSearchRepository.deleteAll(itemsToDelete) TODO
-        _viewState.postValue(ViewState.Success(recentlyLoadedSearches.toUiModels()))
+
+        disposable.add(recentSearchRepository.deleteAll(itemsToDelete)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe{ deleteCompletionUnit ->
+                recentlyLoadedSearches.removeAll(itemsToDelete)
+                _viewState.postValue(ViewState.Success(recentlyLoadedSearches.toUiModels()))
+                deleteCompletionUnit.javaClass // for usage
+            })
     }
 
     sealed class ViewState {

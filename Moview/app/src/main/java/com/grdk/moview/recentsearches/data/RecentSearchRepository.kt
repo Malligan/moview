@@ -18,5 +18,5 @@ interface RecentSearchRepository {
     fun insertAll(recentSearchModels: List<RecentSearchModel>): Single<List<Long>>
 
     @Delete
-    fun deleteAll(recentSearchModels: List<RecentSearchModel?>)
+    fun deleteAll(recentSearchModels: List<RecentSearchModel?>): Single<Unit>
 }
